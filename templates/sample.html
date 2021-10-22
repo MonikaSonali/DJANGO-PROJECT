@@ -1,0 +1,15 @@
+<html>
+<body>
+<h1> Sample Page {{lp}} - {{fncName}} </h1>
+{% if {{fncName}} == "cases" %}
+<h1>
+    The vehicle with license plate number {{lp}} has handled {{cases}} cases
+</h1>
+{% else %}
+<h1>The grouped DF is</h1><br>
+    {% for table in tables %}
+                {{ table|safe }}
+    {% endfor %}
+{% endif %}
+</body>
+</html>

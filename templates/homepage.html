@@ -1,0 +1,21 @@
+<html>
+<body>
+<div>
+  <h1>Bengaluru Ambulance Analysis</h1>
+<!--  <h1> {{context}}</h1>-->
+</div>
+<div>
+<form action="getData" method="post">
+  {% csrf_token %}
+  <label for="lpnum">License Plate:</label>
+  <input type="text" id="lpnum" name="lpnumber"><br><br>
+  <label for="fnc">Choose Function:</label>
+  <select name="fncName" id="fnc">
+    <option value="cases">Cases Handled</option>
+    <option value="pubIntevral">Publish Interval</option>
+  </select><br><br>
+  <input type="submit" value="Submit">
+</form>
+</div>
+</body>
+</html>
