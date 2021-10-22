@@ -1,35 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, request
 import pandas as pd
-from django.forms import ModelForm
-# from .models import Post
-
-# class PostForm(ModelForm):
-#     class meta:
-#         model = Post
-#         fields = '__all__'
-# Create your views here.
-
-
-# def new(request):
-#     if request.method == "POST":
-#         form = PostForm(request.POST)
-#         form.save()
-#         return redirect("/indexpage")
-#     else:
-#         form = PostForm()
-#     return render(request, "sample.html", {"form": form})
 
 def home(request):
-    context = {'resourceItem': 'resourcesItems'}
+    # context = {'resourceItem': 'resourcesItems'}
     return render(request, 'homepage.html')
     # return render(request, 'homepage.html', {"context":context})
 
-
-
-
-
-#
 # def index(request):
 #     # return HttpResponse(" Hy there Welcome ! ")
 #      return render(request, "homepage.html")
@@ -48,15 +25,29 @@ def home(request):
 #         template = "sample.html"
 #     # return HttpResponse(text)
 #     return render(request, template)
+def casesHandled(request,licensePlate):
+    Aresponse = "This is from cases function" + licensePlate
+    return render(request, 'sample.html', {"A_res": Aresponse})
+
+def getPublishInterval(request, license_plate):
+    Bresponse = "This is from cases function" + license_plate
+    return render(request, 'sample.html', {"B_res": Bresponse})
+
 
 def display(request):
-    # import pdb
-    # pdb.set_trace()
+    import pdb
+    pdb.set_trace()
 
-    # {'csrfmiddlewaretoken': ['mbZgV6jeTq9SF9xFkkokZiqLZxiil4xuvL5yffHQQ8SeyY0JrCUvPXRD6YQ0BS6H'],
-    #  'lpnumber': ['KA51G5250'], 'fncName': ['cases']}
-    lpnumber=request.POST['lpnumber']
-    fncName = request.POST['fncName']
-    context = {"lp": lpnumber, "fncName": fncName}
-    return render(request, 'sample.html', {"lp": lpnumber, "fncName": fncName})
+    licensePlateNumber=request.POST['lpnumber']
+    FunctionChosen = request.POST['fncName']
+
+
+    print(licensePlateNumber,FunctionChosen)
+
+    if licensePlateNumber and FunctionChosen == "cases":
+        return redirect(casesHandled, licensePlate=licensePlateNumber)
+
+    if licensePlateNumber and FunctionChosen == "pubInterval":
+        return redirect(getPublishInterval, licensePlate=licensePlateNumber)
+
 
